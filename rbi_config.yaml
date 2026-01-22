@@ -1,0 +1,229 @@
+sources:
+  - name: "kab_bandung"
+    region: "KAB_BANDUNG"
+    type: "gdb"
+    path: "./data/KAB BANDUNG/RBI25K_KAB_BANDUNG_KUGI50_20221231.gdb"
+
+layer_patterns:
+  settlement:
+    category: "settlement"
+    layer_names:
+      - "PERMUKIMAN_AR_25K"
+      - "RBI25K_PEMUKIMAN_AR"
+    name_patterns:
+      - "PEMUKIMAN"
+      - "PERMUKIMAN"
+      - "RESIDENTIAL"
+    geometry_type: "polygon"
+  
+  building:
+    category: "building"
+    layer_names:
+      - "BANGUNAN_AR_25K"
+      - "RBI25K_BANGUNAN_AR"
+    name_patterns:
+      - "BANGUNAN"
+      - "GEDUNG"
+    geometry_type: "polygon"
+  
+  forest:
+    category: "forest"
+    layer_names:
+      - "HUTANLAHANRENDAH_AR_25K"
+      - "HUTANRAWA_AR_25K"
+      - "RBI25K_NONAGRIHUTANKERING_AR"
+    name_patterns:
+      - "HUTAN"
+      - "FOREST"
+    geometry_type: "polygon"
+  
+  shrub:
+    category: "shrub"
+    layer_names:
+      - "SEMAKBELUKAR_AR_25K"
+      - "RBI25K_NONAGRISEMAKBELUKAR_AR"
+      - "HERBADANRUMPUT_AR_25K"
+    name_patterns:
+      - "SEMAK"
+      - "BELUKAR"
+      - "HERBA"
+      - "RUMPUT"
+    geometry_type: "polygon"
+  
+  plantation:
+    category: "plantation"
+    layer_names:
+      - "PERKEBUNAN_AR_25K"
+      - "RBI25K_AGRIKEBUN_AR"
+    name_patterns:
+      - "PERKEBUNAN"
+      - "KEBUN"
+    geometry_type: "polygon"
+  
+  paddy:
+    category: "paddy"
+    layer_names:
+      - "SAWAH_AR_25K"
+      - "RBI25K_AGRISAWAH_AR"
+      - "EMPANG_AR_25K"
+      - "RBI25K_EMPANG_AR"
+    name_patterns:
+      - "SAWAH"
+      - "EMPANG"
+    geometry_type: "polygon"
+  
+  farmland:
+    category: "farmland"
+    layer_names:
+      - "LADANG_AR_25K"
+      - "RBI25K_AGRILADANG_AR"
+      - "TANAMANCAMPUR_AR_25K"
+      - "RBI25K_AGRITANAMCAMPUR_AR"
+    name_patterns:
+      - "LADANG"
+      - "TANAMAN"
+    geometry_type: "polygon"
+  
+  water:
+    category: "water"
+    layer_names:
+      - "SUNGAI_LN_25K"
+      - "RBI25K_SUNGAI_LN"
+      - "DANAU_AR_25K"
+      - "RBI25K_DANAU_AR"
+      - "WADUK_AR_25K"
+    name_patterns:
+      - "SUNGAI"
+      - "DANAU"
+      - "WADUK"
+    geometry_type: null
+  
+  road:
+    category: "road"
+    layer_names:
+      - "JALAN_LN_25K"
+      - "RBI25K_JALAN_LN_25K"
+    name_patterns:
+      - "JALAN"
+      - "ROAD"
+    geometry_type: "line"
+  
+  facility:
+    category: "facility"
+    layer_names:
+      - "INDUSTRI_AR_25K"
+      - "NIAGA_AR_25K"
+      - "PEMERINTAHAN_AR_25K"
+      - "PENDIDIKAN_AR_25K"
+      - "KESEHATAN_AR_25K"
+      - "ARENAOLAHRAGA_AR_25K"
+      - "SARANAIBADAH_AR_25K"
+    name_patterns:
+      - "INDUSTRI"
+      - "NIAGA"
+      - "PEMERINTAHAN"
+      - "PENDIDIKAN"
+      - "KESEHATAN"
+    geometry_type: "polygon"
+
+landuse_categories:
+  - name: "water"
+    weight: 1.00
+    patterns: ["SUNGAI", "DANAU", "WADUK", "PERAIRAN"]
+    priority: 100
+    description: "Water bodies (rivers, lakes, reservoirs)"
+  
+  - name: "building"
+    weight: 0.90
+    patterns: ["BANGUNAN", "GEDUNG", "INDUSTRI"]
+    priority: 80
+    description: "Buildings and industrial structures"
+  
+  - name: "road"
+    weight: 0.90
+    patterns: ["JALAN", "ROAD"]
+    priority: 90
+    description: "Road network (paved surfaces)"
+  
+  - name: "settlement"
+    weight: 0.85
+    patterns: ["PEMUKIMAN", "PERMUKIMAN", "RESIDENTIAL"]
+    priority: 70
+    description: "Residential areas"
+  
+  - name: "paddy"
+    weight: 0.70
+    patterns: ["SAWAH", "EMPANG", "RICE"]
+    priority: 50
+    description: "Paddy fields and fish ponds"
+  
+  - name: "farmland"
+    weight: 0.55
+    patterns: ["LADANG", "TANAMAN CAMPUR"]
+    priority: 45
+    description: "Dryland farming"
+  
+  - name: "plantation"
+    weight: 0.40
+    patterns: ["PERKEBUNAN", "KEBUN"]
+    priority: 40
+    description: "Tree plantations"
+  
+  - name: "shrub"
+    weight: 0.35
+    patterns: ["SEMAK", "BELUKAR", "HERBA", "RUMPUT", "ALANG"]
+    priority: 30
+    description: "Shrubland and grassland"
+  
+  - name: "forest"
+    weight: 0.20
+    patterns: ["HUTAN", "FOREST", "WOODLAND"]
+    priority: 20
+    description: "Natural forest"
+  
+  - name: "default"
+    weight: 0.50
+    patterns: []
+    priority: 10
+    description: "Unclassified land"
+
+road_buffers:
+  - class_name: "highway"
+    width_meters: 12.0
+    patterns:
+      - "TOL"
+      - "HIGHWAY"
+      - "MOTORWAY"
+      - "JALAN TOL"
+  
+  - class_name: "arterial"
+    width_meters: 8.0
+    patterns:
+      - "ARTERI"
+      - "TRUNK"
+      - "PRIMARY"
+      - "JALAN ARTERI"
+  
+  - class_name: "collector"
+    width_meters: 5.0
+    patterns:
+      - "KOLEKTOR"
+      - "SECONDARY"
+      - "JALAN KOLEKTOR"
+  
+  - class_name: "local"
+    width_meters: 3.5
+    patterns:
+      - "LOKAL"
+      - "LOCAL"
+      - "JALAN LOKAL"
+  
+  - class_name: "path"
+    width_meters: 1.0
+    patterns:
+      - "SETAPAK"
+      - "PATH"
+      - "JALAN SETAPAK"
+
+target_crs: "EPSG:4326"
+metric_crs: "EPSG:32748"

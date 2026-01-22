@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rbi-engine"
+version = "0.1.0"
+description = "An engine for processing Indonesia's RBI (Rupa Bumi Indonesia) geospatial data."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+  {name = "Rahman Hakim", email = "rahmanhakim2435@gmail.com"}
+]
+keywords = ["gis", "indonesia", "rbi", "geopandas"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "geopandas>=1.1.2",
+    "pandas>=3.0.0",
+    "PyYAML>=6.0.3",
+    "fiona>=1.10.1",
+    "shapely>=2.1.2",
+    "pyogrio>=0.12.1",
+    "pyproj>=3.7.2",
+    "numpy>=2.4.1",
+    "python-dateutil>=2.9.0",
+    "packaging>=26.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pandas-stubs>=2.3.3",
+    "black",
+    "pytest"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/mochidaz/rbi-engine"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["rbi_engine*"]
